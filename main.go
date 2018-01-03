@@ -21,7 +21,7 @@ type Address struct {
 	State string `json:"state"`
 }
 
-func main() {
+func readCSV() []byte {
 	csvFile, _ := os.Open("example_data.csv")
 	reader := csv.NewReader(bufio.NewReader(csvFile))
 	var people []Person
@@ -42,5 +42,11 @@ func main() {
 		})
 	}
 	peopleJSON, _ := json.Marshal(people)
-	fmt.Println(string(peopleJSON))
+	return peopleJSON
+}
+
+func main() {
+
+	foo := readCSV()
+	fmt.Println(string(foo))
 }
